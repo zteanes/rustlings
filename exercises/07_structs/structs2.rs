@@ -34,7 +34,12 @@ mod tests {
         let order_template = create_order_template();
 
         // TODO: Create your own order using the update syntax and template above!
-        // let your_order =
+        let your_order = Order {
+            name: String::from("Hacker in Rust"), // change name to string
+            count: 1, // count to expected value
+            // struct update syntax to get rest from other struct
+            ..order_template // get the rest of the fields from order template !
+        };
 
         assert_eq!(your_order.name, "Hacker in Rust");
         assert_eq!(your_order.year, order_template.year);

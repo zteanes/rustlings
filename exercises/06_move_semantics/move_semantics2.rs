@@ -20,7 +20,9 @@ mod tests {
     fn move_semantics2() {
         let vec0 = vec![22, 44, 66];
 
-        let vec1 = fill_vec(vec0);
+        // arg passed and never returned, so it's moved into vec1 and unavailable anymore
+        // so we clone it that way both are still available
+        let vec1 = fill_vec(vec0.clone());
 
         assert_eq!(vec0, [22, 44, 66]);
         assert_eq!(vec1, [22, 44, 66, 88]);
