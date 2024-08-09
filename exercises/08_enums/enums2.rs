@@ -8,12 +8,17 @@ struct Point {
 
 #[derive(Debug)]
 enum Message {
-    // TODO: Define the different variants used below.
+    // TODO: define the different variants used below
+    Resize{width: i32, height: i32},
+    Move(Point),
+    Echo(String), // String type
+    ChangeColor(i32, i32, i32), // tuple struct
+    Quit // no defined type
 }
 
 impl Message {
     fn call(&self) {
-        println!("{self:?}");
+        println!("{:?}", &self);
     }
 }
 
