@@ -31,6 +31,19 @@ fn build_scores_table(results: &str) -> HashMap<&str, Team> {
         // Keep in mind that goals scored by team 1 will be the number of goals
         // conceded by team 2. Similarly, goals scored by team 2 will be the
         // number of goals conceded by team 1.
+        
+        // look at the entry for the name. if it doesn't exist, insert a new team with default values
+        scores.entry(team_1_name).or_insert(Team::default());
+        scores.entry(team_2_name).or_insert(Team::default());
+
+        // update the goals scored and conceded for each team by getting the mutable reference 
+        // to the team and unwrapping then updating fields
+        scores.get_mut(team_1_name).unwrap().goals_scored += team_1_score;
+        scores.get_mut(team_1_name).unwrap().goals_conceded += team_2_score;
+
+        scores.get_mut(team_2_name).unwrap().goals_scored += team_2_score;
+        scores.get_mut(team_2_name).unwrap().goals_conceded += team_1_score;
+
     }
 
     scores
